@@ -20,6 +20,7 @@ public class Main {
     public static void fillBoundary(int[][] matrix) {
         int largestNum = matrix.length / 2 - 1;
         int rows = matrix.length;
+        int cols = matrix.length;
 
         int topCounter = largestNum;
         int leftCounter = largestNum;
@@ -28,7 +29,7 @@ public class Main {
 
         // Заполнение верхней границы
         for (int i = 0; i < matrix.length / 2; i++) {
-            for (int j = i; j < cols - i; j++) {
+            for (int j = i; j < rows - i; j++) {
                 matrix[i][j] = topCounter;
             }
             topCounter--;
@@ -36,7 +37,7 @@ public class Main {
 
         // Заполнение левой границы
         for (int i = 0; i < matrix.length / 2; i++) {
-            for (int j = i; j < rows - i; j++) {
+            for (int j = i; j < cols - i; j++) {
                 matrix[j][i] = leftCounter;
             }
             leftCounter--;
@@ -44,7 +45,7 @@ public class Main {
 
         // Заполнение правой границы
         for (int i = rows - 1; i > matrix.length / 2; i--) {
-            for (int j = i; j >= rows - i - 1; j--) {
+            for (int j = i; j >= cols - i - 1; j--) {
                 matrix[j][i] = rightCounter;
             }
             rightCounter--;
@@ -52,7 +53,7 @@ public class Main {
 
         // Заполнение нижней границы
         for (int i = rows - 1; i > matrix.length / 2; i--) {
-            for (int j = i; j >= cols - i - 1; j--) {
+            for (int j = i; j >= rows - i - 1; j--) {
                 matrix[i][j] = bottomCounter;
             }
             bottomCounter--;
