@@ -1,34 +1,40 @@
 package ru.andreev;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        int[][] example = {
-                {1, 2, 3, 4, 5},
-                {5, 7, 9, 2, 1},
-                {0, 9, 1, 8, 7},
-                {6, 3, 6, 6, 6},
-                {99, 100, -2, 3, 1}
-        };
+        Scanner scanner = new Scanner(System.in);
 
-        int min = Integer.MAX_VALUE;
+        System.out.println("Введите размер матрицы: ");
+        int n = scanner.nextInt();
 
-        for (int i = 0; i < example.length; i++) {
-            for (int j = i; j == i; j++) {
-                if (example.length/2 != j)
-                    if (example[i][j] < min)
-                        min = example[i][j];
+        int[][] matrix = new int[n][n];
+
+        System.out.println("Введите элементы матрицы: ");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scanner.nextInt();
             }
         }
 
-        for (int i = 0; i < example.length; i++) {
-            for (int j = example.length - i - 1; j == example.length - i - 1; j--) {
-                if (example.length/2 != j) {
-                    if (example[i][j] < min)
-                        min = example[i][j];
-                }
+        int minValue = Integer.MAX_VALUE;
+
+
+/*
+        for (int i = 0; i < n; i++) {
+            if (!(n % 2 != 0 && i == n / 2)) {
+                minValue = Math.min(minValue, matrix[i][i]);
+            }
+        }
+*/
+
+        for (int i = 0; i < n; i++) {
+            if (!(n % 2 != 0 && i == n / 2)) {
+                minValue = Math.min(minValue, matrix[i][n - 1 - i]);
             }
         }
 
-        System.out.println(min);
+        System.out.println("Минимальный элемент на диагоналях: " + minValue);
     }
 }
