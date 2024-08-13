@@ -18,23 +18,36 @@ public class Main {
             }
         }
 
-        int minValue = Integer.MAX_VALUE;
+        int minValue = getMinValue(n, matrix);
 
+
+        System.out.println("Минимальный элемент на диагоналях: " + minValue);
+    }
+
+    private static int getMinValue(int n, int[][] matrix) {
+        int minValue = Integer.MAX_VALUE;
 
 /*
         for (int i = 0; i < n; i++) {
-            if (!(n % 2 != 0 && i == n / 2)) {
+            if (n % 2 != 0) {
+                if (i != n / 2) {
+                    minValue = Math.min(minValue, matrix[i][i]);
+                }
+            } else {
                 minValue = Math.min(minValue, matrix[i][i]);
             }
         }
 */
 
         for (int i = 0; i < n; i++) {
-            if (!(n % 2 != 0 && i == n / 2)) {
+            if (n % 2 != 0) {
+                if (i != n / 2) {
+                    minValue = Math.min(minValue, matrix[i][n - 1 - i]);
+                }
+            } else {
                 minValue = Math.min(minValue, matrix[i][n - 1 - i]);
             }
         }
-
-        System.out.println("Минимальный элемент на диагоналях: " + minValue);
+        return minValue;
     }
 }
